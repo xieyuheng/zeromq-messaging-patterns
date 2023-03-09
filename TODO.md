@@ -1,4 +1,3 @@
-[load-balancing-router-req] from chapter 3
 [load-balancing-router-dealer] from chapter 3
 
 [load-balancing-broker] extract `Broker` type
