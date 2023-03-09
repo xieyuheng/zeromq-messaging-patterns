@@ -1,4 +1,3 @@
-[load-balancing-router-req] extract `startBroker` & `startWorker`
 [load-balancing-router-dealer] extract `startBroker` & `startWorker`
 
 [load-balancing-broker] extract `Broker` type
