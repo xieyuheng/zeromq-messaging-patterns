@@ -9,7 +9,8 @@
     "format": "prettier src --write"
   },
   "dependencies": {
-    "zeromq": "^6.0.0-beta.16"
+    "zeromq": "^6.0.0-beta.16",
+    "picocolors": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.14.6",
