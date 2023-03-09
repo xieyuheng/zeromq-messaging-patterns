@@ -4,7 +4,7 @@
 > you should take it with you </br>
 > and find nails. </br>
 >
-> -- Xie Yuheng
+> -- Someone on the internet.
 
 I know about ZMQ years ago.
 
