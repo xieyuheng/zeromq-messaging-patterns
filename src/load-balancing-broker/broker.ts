@@ -11,7 +11,7 @@ async function run() {
   const frontend = new Zmq.Router()
   const backend = new Zmq.Router()
 
-  const who = "load-balancer"
+  const who = "broker"
 
   const loadBalancerFrontend = "tcp://127.0.0.1:3000"
   const loadBalancerBackend = "tcp://127.0.0.1:3001"
