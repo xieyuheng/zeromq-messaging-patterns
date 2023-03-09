@@ -18,8 +18,8 @@ import * as Zmq from "zeromq"
 export type Broker = {
   frontend: Zmq.Router
   backend: Zmq.Router
-  workerIds: Array<string>
-  tasks: Array<{ clientId: Buffer; task: Buffer }>
+  workerIds: Array<Buffer>
+  tasks: Array<{ clientId: Buffer; payload: Buffer }>
 }
 
 export function createBroker(): Broker {

@@ -1,15 +1,10 @@
-import { wait } from "../utils/wait"
 import type { Broker } from "./Broker"
+import { brokerMatch } from "./brokerMatch"
 
 export async function brokerHandleTask(broker: Broker) {
-  while (true) {
-    const workerId = broker.workerIds.shift()
-    if (workerId === undefined) {
-      await wait(10)
-      continue
-    }
+  for await (const [clientId, payload] of await broker.frontend) {
+    broker.tasks.push({ clientId, payload })
 
-    const [clientId, task] = await broker.frontend.receive()
-    await broker.backend.send([workerId, clientId, task])
+    brokerMatch(broker)
   }
 }
