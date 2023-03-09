@@ -14,9 +14,7 @@ export async function startBroker(options: Options) {
 
   const who = "broker"
 
-  const broker = createBroker()
-
-  brokerReactive(broker)
+  const broker = brokerReactive(createBroker())
 
   await broker.frontend.bind(frontendAddress)
   await broker.backend.bind(backendAddress)

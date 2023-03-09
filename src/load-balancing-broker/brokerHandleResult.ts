@@ -16,6 +16,6 @@ export async function brokerHandleResult(broker: Broker) {
     // This worker is ready again.
 
     broker.workerIds.push(workerId)
-    brokerMatch(broker)
+    // brokerMatch(broker)
   }
 }

@@ -9,8 +9,9 @@
     "format": "prettier src --write"
   },
   "dependencies": {
-    "zeromq": "^6.0.0-beta.16",
-    "picocolors": "^1.0.0"
+    "@vue/runtime-core": "^3.2.47",
+    "picocolors": "^1.0.0",
+    "zeromq": "^6.0.0-beta.16"
   },
   "devDependencies": {
     "@types/node": "^18.14.6",
