@@ -1,5 +1,3 @@
-[load-balancing-router-dealer] from chapter 3
-
 [load-balancing-broker] extract `Broker` type
 [load-balancing-broker] `Broker` only need one `Router`
 [load-balancing-broker] `Broker` quit using `wait` -- use `match` instead

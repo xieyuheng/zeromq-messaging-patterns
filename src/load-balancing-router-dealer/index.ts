@@ -4,7 +4,7 @@ import { repeatedly } from "../utils/repeatedly"
 import { wait } from "../utils/wait"
 
 async function runWorker() {
-  const worker = new Zmq.Request()
+  const worker = new Zmq.Dealer()
 
   const who = "worker"
 
@@ -38,12 +38,12 @@ async function runBroker(workersNumber: number) {
   const endTime = Date.now() + 5000
   while (true) {
     //  Next message gives us least recently used worker.
-    const [id, delimiter, result] = await broker.receive()
+    const [id, result] = await broker.receive()
 
     if (Date.now() < endTime) {
-      await broker.send([id, delimiter, "Work harder"])
+      await broker.send([id, "Work harder"])
     } else {
-      await broker.send([id, delimiter, "Fired!"])
+      await broker.send([id, "Fired!"])
       workersFired++
       if (workersFired === workersNumber) {
         break
@@ -53,6 +53,12 @@ async function runBroker(workersNumber: number) {
 }
 
 async function run() {
+  /**
+     The example runs for five seconds and then each worker prints how
+     many tasks they handled. If the routing worked, we’d expect a
+     fair distribution of work.
+  **/
+
   const workersNumber = 10
 
   runBroker(workersNumber)
