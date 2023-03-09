@@ -4,22 +4,16 @@ import { brokerMatch } from "./brokerMatch"
 
 export function brokerReactivelyMatch(broker: Broker) {
   watch(
-    () => broker.workerIds,
+    () => broker.workerIds.length,
     () => {
       brokerMatch(broker)
-    }, {
-      immediate: true,
-      deep: true
-    }
+    },
   )
 
   watch(
-    () => broker.tasks,
+    () => broker.tasks.length,
     () => {
       brokerMatch(broker)
-    },{
-      immediate: true,
-      deep: true
-    }
+    },
   )
 }
