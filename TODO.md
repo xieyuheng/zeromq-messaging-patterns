@@ -1,5 +1,3 @@
-rename load-balancer/ to load-balancing-broker/
-
 [load-balancing-router-req] from chapter 3
 [load-balancing-router-dealer] from chapter 3
 
