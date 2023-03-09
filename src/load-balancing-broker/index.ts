@@ -7,7 +7,12 @@ async function main() {
   const backendAddress = "tcp://127.0.0.1:3001"
 
   startBroker({ frontendAddress, backendAddress })
+
   startClient({ frontendAddress })
+  startClient({ frontendAddress })
+  startClient({ frontendAddress })
+
+  startWorker({ backendAddress })
   startWorker({ backendAddress })
 }
 

@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { log } from "../utils/log"
 import { randomHexString } from "../utils/randomHexString"
 import { wait } from "../utils/wait"
 
@@ -17,23 +18,19 @@ export async function startWorker(options: Options) {
   worker.routingId = id
   worker.connect(backendAddress)
 
-  console.log({ who, message: "started", id })
+  log({ who, message: "started", id })
 
   // Message format: [kind, ...rest]
   // - kind = "Ready" | "Result"
 
   await worker.send(["Ready"])
 
-  console.log({
-    who,
-    id,
-    message: "ready",
-  })
+  log({ who, id, message: "ready" })
 
   while (true) {
     const [clientId, task] = await worker.receive()
 
-    console.log({
+    log({
       who,
       id,
       message: "working on task",

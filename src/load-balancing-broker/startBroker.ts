@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { log } from "../utils/log"
 import { wait } from "../utils/wait"
 import type { Broker } from "./Broker"
 
@@ -21,7 +22,7 @@ export async function startBroker(options: Options) {
   await broker.frontend.bind(frontendAddress)
   await broker.backend.bind(backendAddress)
 
-  console.log({ who, message: "started" })
+  log({ who, message: "started" })
 
   handleResult(broker)
   handleTask(broker)
