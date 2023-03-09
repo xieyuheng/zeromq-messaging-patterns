@@ -2,6 +2,7 @@ import { log } from "../utils/log"
 import { createBroker } from "./Broker"
 import { brokerHandleResult } from "./brokerHandleResult"
 import { brokerHandleTask } from "./brokerHandleTask"
+import { brokerReactive } from "./brokerReactive"
 
 type Options = {
   frontendAddress: string
@@ -14,6 +15,8 @@ export async function startBroker(options: Options) {
   const who = "broker"
 
   const broker = createBroker()
+
+  brokerReactive(broker)
 
   await broker.frontend.bind(frontendAddress)
   await broker.backend.bind(backendAddress)
