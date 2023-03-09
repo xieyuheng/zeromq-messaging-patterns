@@ -1,11 +1,13 @@
 import * as Zmq from "zeromq"
 import { wait } from "../utils/wait"
 
-type State = {
+export type Broker = {
   frontend: Zmq.Router
   backend: Zmq.Router
   workerQueue: Array<string>
 }
+
+// startBroker
 
 async function run() {
   const frontend = new Zmq.Router()
@@ -21,13 +23,13 @@ async function run() {
 
   console.log({ who, message: "started" })
 
-  const state: State = { frontend, backend, workerQueue: [] }
+  const state: Broker = { frontend, backend, workerQueue: [] }
 
   handleResult(state)
   handleTask(state)
 }
 
-async function handleResult(state: State) {
+async function handleResult(state: Broker) {
   for await (const [workerId, kind, ...rest] of state.backend) {
     state.workerQueue.push(String(workerId))
 
@@ -43,7 +45,7 @@ async function handleResult(state: State) {
   }
 }
 
-async function handleTask(state: State) {
+async function handleTask(state: Broker) {
   while (true) {
     const workerId = state.workerQueue.shift()
     if (workerId === undefined) {
