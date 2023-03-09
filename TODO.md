@@ -1,5 +1,3 @@
-[load-balancing-router-dealer] extract `startBroker` & `startWorker`
-
 [load-balancing-broker] extract `Broker` type
 [load-balancing-broker] extract `createBroker`
 
