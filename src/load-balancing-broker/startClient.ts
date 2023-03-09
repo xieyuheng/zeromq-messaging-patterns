@@ -2,15 +2,20 @@ import * as Zmq from "zeromq"
 import { randomHexString } from "../utils/randomHexString"
 import { wait } from "../utils/wait"
 
-export async function startClient() {
-  const client = new Zmq.Dealer()
+type Options = {
+  frontendAddress: string
+}
+
+export async function startClient(options: Options) {
+  const { frontendAddress } = options
 
   const who = "client"
-  const loadBalancerFrontend = "tcp://127.0.0.1:3000"
+
+  const client = new Zmq.Dealer()
 
   const id = `client ${randomHexString(10)}`
   client.routingId = id
-  client.connect(loadBalancerFrontend)
+  client.connect(frontendAddress)
 
   console.log({ who, message: "started", id })
 
@@ -22,6 +27,6 @@ export async function startClient() {
 
     console.log({ who, id, result: String(result) })
 
-    await wait(1000)
+    await wait(500)
   }
 }

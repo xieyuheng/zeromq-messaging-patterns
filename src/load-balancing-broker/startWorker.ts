@@ -2,15 +2,20 @@ import * as Zmq from "zeromq"
 import { randomHexString } from "../utils/randomHexString"
 import { wait } from "../utils/wait"
 
-export async function startWorker() {
-  const worker = new Zmq.Dealer()
+type Options = {
+  backendAddress: string
+}
+
+export async function startWorker(options: Options) {
+  const { backendAddress } = options
 
   const who = "worker"
-  const loadBalancerBackend = "tcp://127.0.0.1:3001"
+
+  const worker = new Zmq.Dealer()
 
   const id = `worker ${randomHexString(10)}`
   worker.routingId = id
-  worker.connect(loadBalancerBackend)
+  worker.connect(backendAddress)
 
   console.log({ who, message: "started", id })
 

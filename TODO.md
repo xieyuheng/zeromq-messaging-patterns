@@ -1,4 +1,4 @@
-[load-balancing-broker] fix `main()`
+`utils/log`
 
 [load-balancing-broker] note about why `Broker` uses two sockets -- `majordemo` only uses one.
 
