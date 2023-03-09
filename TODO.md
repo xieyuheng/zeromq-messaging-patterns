@@ -1,4 +1,11 @@
-[load-balancer] extract `LoadBalancer` type
+rename load-balancer/ to load-balancing-broker/
+
+[load-balancing-router-req] from chapter 3
+[load-balancing-router-dealer] from chapter 3
+
+[load-balancing-broker] extract `Broker` type
+[load-balancing-broker] `Broker` only need one `Router`
+[load-balancing-broker] `Broker` quit using `wait` -- use `match` instead
 
 [mydemo] Like the `majordemo` but only use `Dealer` and `Router`,
 to avoid empty envelope delimiter frame.
