@@ -54,9 +54,11 @@ async function runBroker(workersNumber: number) {
 
 async function run() {
   /**
+
      The example runs for five seconds and then each worker prints how
      many tasks they handled. If the routing worked, we’d expect a
      fair distribution of work.
+
   **/
 
   const workersNumber = 10
