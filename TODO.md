@@ -1,4 +1,6 @@
-[mydemo] Like the majordemo but only use Dealer and Router,
+[load-balancer] extract `LoadBalancer` type
+
+[mydemo] Like the `majordemo` but only use `Dealer` and `Router`,
 to avoid empty envelope delimiter frame.
 
-[ch3] inter-broker-routing
+[inter-broker-routing] chapter 3 of zguide
