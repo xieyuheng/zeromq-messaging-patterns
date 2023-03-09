@@ -1,5 +1,4 @@
-[load-balancing-broker] extract `Broker` type
-[load-balancing-broker] extract `createBroker`
+[load-balancing-broker] fix `main()`
 
 [load-balancing-broker] note about why `Broker` uses two sockets -- `majordemo` only uses one.
 

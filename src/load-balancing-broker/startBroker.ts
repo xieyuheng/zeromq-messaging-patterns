@@ -1,32 +1,30 @@
 import * as Zmq from "zeromq"
 import { wait } from "../utils/wait"
+import type { Broker } from "./Broker"
 
-export type Broker = {
-  frontend: Zmq.Router
-  backend: Zmq.Router
-  workerQueue: Array<string>
+type Options = {
+  frontendAddress: string
+  backendAddress: string
 }
 
-// startBroker
-
-async function run() {
-  const frontend = new Zmq.Router()
-  const backend = new Zmq.Router()
+export async function startBroker(options: Options) {
+  const { frontendAddress, backendAddress } = options
 
   const who = "broker"
 
-  const loadBalancerFrontend = "tcp://127.0.0.1:3000"
-  const loadBalancerBackend = "tcp://127.0.0.1:3001"
+  const broker: Broker = {
+    frontend: new Zmq.Router(),
+    backend: new Zmq.Router(),
+    workerQueue: [],
+  }
 
-  await frontend.bind(loadBalancerFrontend)
-  await backend.bind(loadBalancerBackend)
+  await broker.frontend.bind(frontendAddress)
+  await broker.backend.bind(backendAddress)
 
   console.log({ who, message: "started" })
 
-  const state: Broker = { frontend, backend, workerQueue: [] }
-
-  handleResult(state)
-  handleTask(state)
+  handleResult(broker)
+  handleTask(broker)
 }
 
 async function handleResult(state: Broker) {
@@ -57,5 +55,3 @@ async function handleTask(state: Broker) {
     await state.backend.send([workerId, clientId, task])
   }
 }
-
-run()

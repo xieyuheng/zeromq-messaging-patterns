@@ -2,7 +2,7 @@ import * as Zmq from "zeromq"
 import { randomHexString } from "../utils/randomHexString"
 import { wait } from "../utils/wait"
 
-async function run() {
+export async function startClient() {
   const client = new Zmq.Dealer()
 
   const who = "client"
@@ -25,5 +25,3 @@ async function run() {
     await wait(1000)
   }
 }
-
-run()
