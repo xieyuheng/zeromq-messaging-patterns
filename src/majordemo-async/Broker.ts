@@ -1,15 +1,10 @@
 import * as Zmq from "zeromq"
+import type { Service } from "./Service"
 
 export type Broker = {
   frontend: Zmq.Router
   backend: Zmq.Router
   services: Map<string, Service>
-}
-
-export type Service = {
-  name: string
-  requests: Array<Array<Buffer>>
-  workerIds: Array<Buffer>
 }
 
 export function createBroker(): Broker {
