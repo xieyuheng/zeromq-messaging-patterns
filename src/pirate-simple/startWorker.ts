@@ -6,10 +6,12 @@ import { wait } from "../utils/wait"
 
 type Options = {
   backendAddress: string
+  overloadDelay: number
+  workDelay: number
 }
 
 export async function startWorker(options: Options) {
-  const { backendAddress } = options
+  const { backendAddress, overloadDelay, workDelay } = options
 
   const who = "worker"
 
@@ -19,7 +21,7 @@ export async function startWorker(options: Options) {
   worker.routingId = id
   worker.connect(backendAddress)
 
-  log({ who, message: "started", id })
+  log({ who, id, message: "started" })
 
   // Message format: [kind, ...rest]
   // - kind = "Ready" | "Result"
@@ -35,18 +37,20 @@ export async function startWorker(options: Options) {
 
     //  Simulate various problems, after a few cycles
     if (cycles > 3) {
-      if (randomNat(10) === 0) {
+      if (randomNat(20) === 0) {
         log({ who, id, kind: "Error", message: "simulating a crash" })
         return
       }
 
       if (randomNat(3) === 0) {
-        log({ who, id, message: "simulating CPU overload" })
-        await wait(2000)
+        log({ who, id, kind: "Warning", message: "simulating CPU overload" })
+        await wait(overloadDelay)
       }
     }
 
-    log({ who, id, message: "normal request" })
+    log({ who, id, message: "working" })
+    //  Pretend to work
+    await wait(workDelay)
     await worker.send(["Result", ...request])
   }
 }

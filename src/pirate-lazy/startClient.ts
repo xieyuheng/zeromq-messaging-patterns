@@ -57,7 +57,6 @@ export async function startClient(options: Options): Promise<void> {
             kind: "Error",
             message: "Server seems to be offline, abandoning",
           })
-
           return
         }
 
