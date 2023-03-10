@@ -22,6 +22,14 @@ async function main() {
   const timeout = 1500
   const retries = 5
 
+  /**
+
+     If a client is not patient enough,
+     it might abandon the service,
+     while there are still workers alive.
+
+  **/
+
   const frontendAddress = "tcp://127.0.0.1:3000"
   const backendAddress = "tcp://127.0.0.1:3001"
   const serverAddress = frontendAddress
