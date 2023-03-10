@@ -1,9 +1,10 @@
-[pirate-simple] startClient
-[pirate-simple] startServer
+[pirate-simple] startBroker
+[pirate-simple] startWorker
 [pirate-simple] index
 
 [pirate-paranoid] startClient
-[pirate-paranoid] startServer
+[pirate-paranoid] startBroker
+[pirate-paranoid] startWorker
 [pirate-paranoid] index
 
 [majordemo-async] Like the `majordemo` but only use `Dealer` and `Router`,

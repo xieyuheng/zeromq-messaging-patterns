@@ -5,10 +5,10 @@ type Options = {
   serverAddress: string
 }
 
-export async function startServer(options: Options) {
+export async function startBroker(options: Options) {
   const {serverAddress} = options
 
-  const who = "server"
+  const who = "broker"
 
   const server = new Zmq.Router()
 
