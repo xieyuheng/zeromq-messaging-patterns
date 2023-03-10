@@ -1,19 +1,26 @@
-import * as Zmq from "zeromq"
 import { log } from "../utils/log"
+import { createBroker } from "./Broker"
+import { brokerHandleResult } from "./brokerHandleResult"
+import { brokerHandleTask } from "./brokerHandleTask"
+import { brokerReactive } from "./brokerReactive"
 
 type Options = {
-  serverAddress: string
+  frontendAddress: string
+  backendAddress: string
 }
 
 export async function startBroker(options: Options) {
-  const {serverAddress} = options
+  const { frontendAddress, backendAddress } = options
 
   const who = "broker"
 
-  const server = new Zmq.Router()
+  const broker = brokerReactive(createBroker())
 
-  await server.bind(serverAddress)
+  await broker.frontend.bind(frontendAddress)
+  await broker.backend.bind(backendAddress)
 
   log({ who, message: "started" })
-  //
+
+  brokerHandleResult(broker)
+  brokerHandleTask(broker)
 }

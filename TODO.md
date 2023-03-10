@@ -1,4 +1,3 @@
-[pirate-simple] startBroker
 [pirate-simple] startWorker
 [pirate-simple] index
 
