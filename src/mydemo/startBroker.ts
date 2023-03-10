@@ -2,7 +2,6 @@ import { log } from "../utils/log"
 import { createBroker } from "./Broker"
 import { brokerListenBackend } from "./brokerListenBackend"
 import { brokerListenFrontend } from "./brokerListenFrontend"
-import { brokerReactive } from "./brokerReactive"
 
 type Options = {
   frontendAddress: string
@@ -14,7 +13,7 @@ export async function startBroker(options: Options) {
 
   const who = "broker"
 
-  const broker = brokerReactive(createBroker())
+  const broker = createBroker()
 
   await broker.frontend.bind(frontendAddress)
   await broker.backend.bind(backendAddress)

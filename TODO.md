@@ -1,9 +1,6 @@
 # mydemo
 
-[mydemo] `brokerListenBackend` -- `Reply`
-[mydemo] `serviceReactive`
-[mydemo] `Broker` remove `requests` and `workerIds`
-[mydemo] without `heartbeat` for now
+[mydemo] support `heartbeat`
 [mydemo] refactor so that `retry` is composable
 [mydemo] refactor so that `heartbeat` are composable
 
