@@ -1,6 +1,5 @@
 # majordemo-async
 
-[majordemo-async] `serviceMatch`
 [majordemo-async] `brokerListenBackend` -- `Reply`
 [majordemo-async] `serviceReactive`
 [majordemo-async] `Broker` remove `requests` and `workerIds`

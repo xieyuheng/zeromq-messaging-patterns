@@ -9,11 +9,11 @@ export async function brokerListenFrontend(broker: Broker) {
         if (found === undefined) {
           broker.services.set(String(serviceName), {
             name: String(serviceName),
-            requests: [request],
+            requests: [{ clientId, request }],
             workerIds: [],
           })
         } else {
-          found.requests.push(request)
+          found.requests.push({ clientId, request })
         }
       }
     }
