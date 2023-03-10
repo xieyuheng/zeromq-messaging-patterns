@@ -22,6 +22,12 @@ export type Broker = {
   requests: Array<Array<Buffer>>
 }
 
+// frontend.receive: [clientId, ...request]
+// frontend.send: [clientId, ...result]
+
+// backend.receive: []
+// backend.send: []
+
 export function createBroker(): Broker {
   return {
     frontend: new Zmq.Router(),
