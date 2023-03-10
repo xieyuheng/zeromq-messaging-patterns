@@ -10,8 +10,7 @@ export async function brokerHandleResult(broker: Broker) {
       }
 
       case "Result": {
-        const [clientId, result] = rest
-        await broker.frontend.send([clientId, result])
+        await broker.frontend.send(rest)
       }
     }
   }

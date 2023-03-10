@@ -12,6 +12,7 @@
 
 import { startBroker } from "./startBroker"
 import { startClient } from "./startClient"
+import { startWorker } from "./startWorker"
 
 async function main() {
   const timeout = 2500
@@ -20,7 +21,13 @@ async function main() {
   const backendAddress = "tcp://127.0.0.1:3001"
 
   startClient({ serverAddress: frontendAddress, timeout, retries })
+  startClient({ serverAddress: frontendAddress, timeout, retries })
+  startClient({ serverAddress: frontendAddress, timeout, retries })
+
   startBroker({ frontendAddress, backendAddress })
+
+  startWorker({ backendAddress })
+  startWorker({ backendAddress })
 }
 
 main()

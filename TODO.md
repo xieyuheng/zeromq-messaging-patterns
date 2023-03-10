@@ -1,6 +1,3 @@
-[pirate-simple] startWorker
-[pirate-simple] index
-
 [pirate-paranoid] startClient
 [pirate-paranoid] startBroker
 [pirate-paranoid] startWorker

@@ -11,7 +11,7 @@ export function brokerReactivelyMatch(broker: Broker) {
   )
 
   watch(
-    () => broker.tasks.length,
+    () => broker.requests.length,
     () => {
       brokerMatch(broker)
     },

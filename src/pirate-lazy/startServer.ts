@@ -36,7 +36,6 @@ export async function startServer(options: Options): Promise<void> {
     }
 
     log({ who, message: "normal request" })
-    await wait(1000)
     await server.send(request)
   }
 }
