@@ -20,15 +20,14 @@ export type Broker = {
   backend: Zmq.Router
   workerIds: Array<Buffer>
   requests: Array<Array<Buffer>>
+  services: Map<string, Service>
 }
 
-// frontend.receive: [clientId, ...request]
-// frontend.send: [clientId, ...reply]
-
-// backend.send: [workerId, ...request]
-// backend.receive:
-//  | [workerId, "Ready"]
-//  | [workerId, "Reply", clientId, ...reply]
+export type Service = {
+  name: string
+  requests: Array<Array<Buffer>>
+  workerIds: Array<Buffer>
+}
 
 export function createBroker(): Broker {
   return {
@@ -36,5 +35,6 @@ export function createBroker(): Broker {
     backend: new Zmq.Router({ sendHighWaterMark: 1 }),
     workerIds: [],
     requests: [],
+    services: new Map(),
   }
 }

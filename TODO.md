@@ -1,7 +1,7 @@
 # majordemo-async
 
-[majordemo-async] add `serviceName` to messages
-[majordemo-async] `Broker` has `services: Map<string, Service>`
+[majordemo-async] fix message format
+[majordemo-async] `Broker` remove `requests` and `workerIds`
 [majordemo-async] without `heartbeat` for now
 [majordemo-async] refactor so that `retry` is composable
 [majordemo-async] refactor so that `heartbeat` are composable
