@@ -1,5 +1,7 @@
 # majordemo-async
 
+[majordemo-async] add `serviceName` to messages
+[majordemo-async] `Broker` has `services: Map<string, Service>`
 [majordemo-async] without `heartbeat` for now
 [majordemo-async] refactor so that `retry` is composable
 [majordemo-async] refactor so that `heartbeat` are composable
@@ -8,9 +10,9 @@
 
 [pirate-lazy] close and reconnect on a new socket
 
-# pirate-paranoid
+# pirate-simple
 
-[pirate-paranoid] close and reconnect on a new socket
+[pirate-simple] close and reconnect on a new socket
 
 # pirate-paranoid
 
