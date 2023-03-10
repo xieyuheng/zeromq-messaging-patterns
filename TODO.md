@@ -1,6 +1,5 @@
 # majordemo-async
 
-[majordemo-async] `brokerListenFrontend`
 [majordemo-async] `brokerListenBackend` -- `Reply`
 [majordemo-async] extract `Service`
 [majordemo-async] `serviceReactive`

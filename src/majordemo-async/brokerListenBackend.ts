@@ -6,19 +6,20 @@ export async function brokerListenBackend(broker: Broker) {
       case "Ready": {
         const [serviceName] = rest
         const found = broker.services.get(String(serviceName))
-        if (found) {
-          found.workerIds.push(workerId)
-        } else {
+        if (found === undefined) {
           broker.services.set(String(serviceName), {
             name: String(serviceName),
             requests: [],
             workerIds: [workerId],
           })
+        } else {
+          found.workerIds.push(workerId)
         }
       }
 
       case "Reply": {
         const [clientId, ...reply] = rest
+        // serviceName
         // await broker.frontend.send(rest)
       }
     }
