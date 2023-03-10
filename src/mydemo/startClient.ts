@@ -29,7 +29,7 @@ export async function startClient(options: Options): Promise<void> {
   while (retriesLeft > 0) {
     const payload = randomHexString(4)
     const request = [String(++sequence), payload]
-    const serviceName = randomServiceName(["Coffee", "Tea"])
+    const serviceName = randomServiceName(["Water", "Coffee", "Tea"])
     await client.send(["Request", serviceName, ...request])
 
     while (true) {

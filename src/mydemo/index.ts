@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { randomPort } from "../utils/node/randomPort"
 
 import { startBroker } from "./startBroker"
 import { startClient } from "./startClient"
@@ -7,8 +8,8 @@ import { startWorker } from "./startWorker"
 async function main() {
   Zmq.context.blocky = false
 
-  const timeout = 1500
-  const retries = 5
+  const timeout = 1000
+  const retries = 8
 
   /**
 
@@ -18,8 +19,8 @@ async function main() {
 
   **/
 
-  const frontendAddress = "tcp://127.0.0.1:3000"
-  const backendAddress = "tcp://127.0.0.1:3001"
+  const frontendAddress = `tcp://127.0.0.1:${await randomPort()}`
+  const backendAddress = `tcp://127.0.0.1:${await randomPort()}`
   const serverAddress = frontendAddress
 
   startClient({ serverAddress, timeout, retries })
@@ -28,11 +29,27 @@ async function main() {
 
   startBroker({ frontendAddress, backendAddress })
 
-  const overloadDelay = 2500
+  const overloadDelay = 2000
   const workDelay = 300
 
-  startWorker({ serviceName: "Coffee", backendAddress, overloadDelay, workDelay })
-  startWorker({ serviceName: "Coffee", backendAddress, overloadDelay, workDelay })
+  startWorker({
+    serviceName: "Water",
+    backendAddress,
+    overloadDelay,
+    workDelay,
+  })
+  startWorker({
+    serviceName: "Coffee",
+    backendAddress,
+    overloadDelay,
+    workDelay,
+  })
+  startWorker({
+    serviceName: "Coffee",
+    backendAddress,
+    overloadDelay,
+    workDelay,
+  })
   startWorker({ serviceName: "Tea", backendAddress, overloadDelay, workDelay })
   startWorker({ serviceName: "Tea", backendAddress, overloadDelay, workDelay })
   startWorker({ serviceName: "Tea", backendAddress, overloadDelay, workDelay })

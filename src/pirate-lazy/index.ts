@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { randomPort } from "../utils/node/randomPort"
 
 /**
 
@@ -12,7 +13,7 @@ import { startServer } from "./startServer"
 async function main() {
   Zmq.context.blocky = false
 
-  const serverAddress = "tcp://127.0.0.1:3000"
+  const serverAddress = `tcp://127.0.0.1:${await randomPort()}`
 
   const timeout = 1500
   const retries = 3
