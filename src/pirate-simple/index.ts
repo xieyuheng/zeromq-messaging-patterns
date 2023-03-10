@@ -20,7 +20,7 @@ async function main() {
   Zmq.context.blocky = false
 
   const timeout = 1500
-  const retries = 3
+  const retries = 5
 
   const frontendAddress = "tcp://127.0.0.1:3000"
   const backendAddress = "tcp://127.0.0.1:3001"
