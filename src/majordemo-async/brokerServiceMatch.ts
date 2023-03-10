@@ -1,7 +1,7 @@
 import type { Broker } from "./Broker"
 import type { Service } from "./Service"
 
-export async function serviceMatch(
+export async function brokerServiceMatch(
   broker: Broker,
   service: Service,
 ): Promise<void> {
