@@ -1,5 +1,3 @@
-[pirate-simple] note about message format of the broker
-
 [pirate-paranoid] startClient
 [pirate-paranoid] startBroker
 [pirate-paranoid] startWorker

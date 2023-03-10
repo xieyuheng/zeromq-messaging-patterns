@@ -23,8 +23,8 @@ export async function startWorker(options: Options) {
 
   log({ who, id, message: "started" })
 
-  // receive: [...request]
-  // send: ["Ready"] | ["Result", ...request]
+  // worker.receive: [...request]
+  // worker.send: ["Ready"] | ["Result", ...result]
 
   await worker.send(["Ready"])
 

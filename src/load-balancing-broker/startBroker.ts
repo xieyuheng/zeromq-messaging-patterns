@@ -1,7 +1,7 @@
 import { log } from "../utils/log"
 import { createBroker } from "./Broker"
-import { brokerHandleResult } from "./brokerHandleResult"
-import { brokerHandleTask } from "./brokerHandleTask"
+import { brokerListenBackend } from "./brokerListenBackend"
+import { brokerListenFrontend } from "./brokerListenFrontend"
 import { brokerReactive } from "./brokerReactive"
 
 type Options = {
@@ -21,6 +21,6 @@ export async function startBroker(options: Options) {
 
   log({ who, message: "started" })
 
-  brokerHandleResult(broker)
-  brokerHandleTask(broker)
+  brokerListenBackend(broker)
+  brokerListenFrontend(broker)
 }
