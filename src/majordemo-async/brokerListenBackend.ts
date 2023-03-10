@@ -19,8 +19,8 @@ export async function brokerListenBackend(broker: Broker) {
 
       case "Reply": {
         const [clientId, ...reply] = rest
-        // serviceName
-        // await broker.frontend.send(rest)
+        // const serviceName = ?
+        // await broker.frontend.send([clientId, "Reply", serviceName, ...reply])
       }
     }
   }
