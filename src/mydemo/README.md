@@ -22,16 +22,18 @@ plus a router id at the start.
 
 `client` and `broker.frontend`:
 
+- Different from MDP, we do not pass `serviceName` back to client in reply.
+
 ```
 client.send:
 | ["Request", serviceName, ...request]
 client.receive:
-| ["Reply", serviceName, ...reply]
+| ["Reply", ...reply]
 
 broker.frontend.receive:
 | [clientId, "Request", serviceName, ...request]
 broker.frontend.send:
-| [clientId, "Reply", serviceName, ...reply]
+| [clientId, "Reply", ...reply]
 ```
 
 `worker` and `broker.backend`:
