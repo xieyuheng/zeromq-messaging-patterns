@@ -5,13 +5,14 @@ import { randomNat } from "../utils/randomNat"
 import { wait } from "../utils/wait"
 
 type Options = {
+  serviceName: string
   backendAddress: string
   overloadDelay: number
   workDelay: number
 }
 
 export async function startWorker(options: Options) {
-  const { backendAddress, overloadDelay, workDelay } = options
+  const { serviceName, backendAddress, overloadDelay, workDelay } = options
 
   const who = "worker"
 
@@ -21,12 +22,9 @@ export async function startWorker(options: Options) {
   worker.routingId = id
   worker.connect(backendAddress)
 
-  log({ who, id, message: "started" })
+  log({ who, id, message: "started", serviceName })
 
-  // worker.receive: [...request]
-  // worker.send: ["Ready"] | ["Reply", ...reply]
-
-  await worker.send(["Ready"])
+  await worker.send(["Ready", serviceName])
 
   log({ who, id, message: "ready" })
 

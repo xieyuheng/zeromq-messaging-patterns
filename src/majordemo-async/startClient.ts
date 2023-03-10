@@ -1,11 +1,17 @@
 import * as Zmq from "zeromq"
 import { log } from "../utils/log"
 import { randomHexString } from "../utils/randomHexString"
+import { randomNat } from "../utils/randomNat"
 
 type Options = {
   serverAddress: string
   timeout: number // ms
   retries: number
+}
+
+function randomServiceName(names: Array<string>): string {
+  const index = randomNat(names.length)
+  return names[index]
 }
 
 export async function startClient(options: Options): Promise<void> {
@@ -23,19 +29,21 @@ export async function startClient(options: Options): Promise<void> {
   while (retriesLeft > 0) {
     const payload = randomHexString(4)
     const request = [String(++sequence), payload]
-    await client.send(request)
+    const serviceName = randomServiceName(["Coffee", "Tea"])
+    await client.send(["Request", serviceName, ...request])
 
     while (true) {
       log({ who, message: "expecting reply" })
       try {
         client.receiveTimeout = timeout
-        const [receivedSequence, reply] = await client.receive()
+        const [receivedSequence, serviceName, ...reply] = await client.receive()
         if (Number(receivedSequence) === sequence) {
           log({
             who,
             message: "ok",
             sequence,
-            reply: String(reply),
+            serviceName: String(serviceName),
+            reply: reply.map(String),
           })
           retriesLeft = retries
           break
@@ -46,8 +54,9 @@ export async function startClient(options: Options): Promise<void> {
           kind: "Error",
           message: "received wrong sequence",
           sequence,
+          serviceName: String(serviceName),
           receivedSequence: String(receivedSequence),
-          reply: String(reply),
+          reply: reply.map(String),
         })
       } catch (error) {
         // TODO only catch timeout error
