@@ -32,8 +32,8 @@ export type Broker = {
 
 export function createBroker(): Broker {
   return {
-    frontend: new Zmq.Router(),
-    backend: new Zmq.Router(),
+    frontend: new Zmq.Router({ sendHighWaterMark: 1 }),
+    backend: new Zmq.Router({ sendHighWaterMark: 1 }),
     workerIds: [],
     requests: [],
   }
