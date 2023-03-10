@@ -9,15 +9,15 @@ async function run() {
   await client.send(["4"])
 
   {
-    const [n, result] = await client.receive()
-    console.log(String(n), String(result))
+    const [n, reply] = await client.receive()
+    console.log(String(n), String(reply))
   }
 
   await client.send(["5"])
 
   {
-    const [n, result] = await client.receive()
-    console.log(String(n), String(result))
+    const [n, reply] = await client.receive()
+    console.log(String(n), String(reply))
   }
 }
 

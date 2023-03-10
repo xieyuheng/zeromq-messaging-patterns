@@ -23,9 +23,9 @@ export async function startClient(options: Options) {
     const task = `task ${randomHexString(4)}`
     await client.send(task)
 
-    const [result] = await client.receive()
+    const [reply] = await client.receive()
 
-    log({ who, id, result: String(result) })
+    log({ who, id, reply: String(reply) })
 
     await wait(500)
   }

@@ -23,12 +23,12 @@ export type Broker = {
 }
 
 // frontend.receive: [clientId, ...request]
-// frontend.send: [clientId, ...result]
+// frontend.send: [clientId, ...reply]
 
 // backend.send: [workerId, ...request]
 // backend.receive:
 //  | [workerId, "Ready"]
-//  | [workerId, "Result", clientId, ...result]
+//  | [workerId, "Reply", clientId, ...reply]
 
 export function createBroker(): Broker {
   return {

@@ -24,7 +24,7 @@ export async function startWorker(options: Options) {
   log({ who, id, message: "started" })
 
   // worker.receive: [...request]
-  // worker.send: ["Ready"] | ["Result", ...result]
+  // worker.send: ["Ready"] | ["Reply", ...reply]
 
   await worker.send(["Ready"])
 
@@ -51,6 +51,6 @@ export async function startWorker(options: Options) {
     log({ who, id, message: "working" })
     //  Pretend to work
     await wait(workDelay)
-    await worker.send(["Result", ...request])
+    await worker.send(["Reply", ...request])
   }
 }

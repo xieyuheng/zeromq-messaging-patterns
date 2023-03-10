@@ -29,13 +29,13 @@ export async function startClient(options: Options): Promise<void> {
       log({ who, message: "expecting reply" })
       try {
         client.receiveTimeout = timeout
-        const [receivedSequence, result] = await client.receive()
+        const [receivedSequence, reply] = await client.receive()
         if (Number(receivedSequence) === sequence) {
           log({
             who,
             message: "ok",
             sequence,
-            result: String(result),
+            reply: String(reply),
           })
           retriesLeft = retries
           break
@@ -47,7 +47,7 @@ export async function startClient(options: Options): Promise<void> {
           message: "received wrong sequence",
           sequence,
           receivedSequence: String(receivedSequence),
-          result: String(result),
+          reply: String(reply),
         })
       } catch (error) {
         // TODO only catch timeout error

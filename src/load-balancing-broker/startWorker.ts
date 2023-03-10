@@ -21,7 +21,7 @@ export async function startWorker(options: Options) {
   log({ who, message: "started", id })
 
   // receive: [...request]
-  // send: ["Ready"] | ["Result", ...request]
+  // send: ["Ready"] | ["Reply", ...request]
 
   await worker.send(["Ready"])
 
@@ -40,7 +40,7 @@ export async function startWorker(options: Options) {
 
     await wait(300)
 
-    const result = `${task}, result ${randomHexString(4)}`
-    await worker.send(["Result", clientId, result])
+    const reply = `${task}, reply ${randomHexString(4)}`
+    await worker.send(["Reply", clientId, reply])
   }
 }

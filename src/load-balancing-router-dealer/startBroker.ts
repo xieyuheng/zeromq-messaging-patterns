@@ -20,7 +20,7 @@ export async function startBroker(options: Options) {
   const endTime = Date.now() + 5000
   while (true) {
     //  Next message gives us least recently used worker.
-    const [id, result] = await broker.receive()
+    const [id, reply] = await broker.receive()
 
     if (Date.now() < endTime) {
       await broker.send([id, "Work harder"])

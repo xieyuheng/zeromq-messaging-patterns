@@ -9,7 +9,7 @@ export async function brokerListenBackend(broker: Broker) {
       case "Ready": {
       }
 
-      case "Result": {
+      case "Reply": {
         await broker.frontend.send(rest)
       }
     }
