@@ -25,7 +25,6 @@ async function main() {
   startClient({ serverAddress, timeout, retries })
   startClient({ serverAddress, timeout, retries })
   startClient({ serverAddress, timeout, retries })
-  startClient({ serverAddress, timeout, retries })
 
   startBroker({ frontendAddress, backendAddress })
 

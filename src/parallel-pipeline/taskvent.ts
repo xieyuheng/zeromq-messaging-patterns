@@ -1,5 +1,5 @@
 import * as Zmq from "zeromq"
-import { getChar } from "../utils/getChar"
+import { getChar } from "../utils/node/getChar"
 import { randomNat } from "../utils/randomNat"
 
 //  Task ventilator
