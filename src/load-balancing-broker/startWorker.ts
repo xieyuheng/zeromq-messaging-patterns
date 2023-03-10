@@ -14,7 +14,7 @@ export async function startWorker(options: Options) {
 
   const worker = new Zmq.Dealer()
 
-  const id = `worker ${randomHexString(4)}`
+  const id = randomHexString(4)
   worker.routingId = id
   worker.connect(backendAddress)
 

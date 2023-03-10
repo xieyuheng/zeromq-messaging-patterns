@@ -19,7 +19,7 @@ export type Broker = {
   frontend: Zmq.Router
   backend: Zmq.Router
   workerIds: Array<Buffer>
-  tasks: Array<{ clientId: Buffer; payload: Buffer }>
+  requests: Array<Array<Buffer>>
 }
 
 export function createBroker(): Broker {
@@ -27,6 +27,6 @@ export function createBroker(): Broker {
     frontend: new Zmq.Router(),
     backend: new Zmq.Router(),
     workerIds: [],
-    tasks: [],
+    requests: [],
   }
 }
