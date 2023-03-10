@@ -54,8 +54,8 @@ export async function startClient(options: Options): Promise<void> {
           log({
             who,
             kind: "Error",
-            message: "unknown kind",
-            kind: String(kind),
+            message: "unknown message kind",
+            messageKind: String(kind),
           })
           continue
         }
