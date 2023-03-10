@@ -14,7 +14,7 @@ export async function startWorker(options: Options) {
 
   const worker = new Zmq.Dealer()
 
-  const id = `worker ${randomHexString(10)}`
+  const id = `worker ${randomHexString(4)}`
   worker.routingId = id
   worker.connect(backendAddress)
 
@@ -40,7 +40,7 @@ export async function startWorker(options: Options) {
 
     await wait(300)
 
-    const result = `${task}, result ${randomHexString(8)}`
+    const result = `${task}, result ${randomHexString(4)}`
     await worker.send(["Result", clientId, result])
   }
 }
