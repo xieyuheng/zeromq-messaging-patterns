@@ -1,6 +1,9 @@
 # majordemo-async
 
-[majordemo-async] fix message format
+[majordemo-async] `brokerListenFrontend`
+[majordemo-async] `brokerListenBackend` -- `Reply`
+[majordemo-async] extract `Service`
+[majordemo-async] `serviceReactive`
 [majordemo-async] `Broker` remove `requests` and `workerIds`
 [majordemo-async] without `heartbeat` for now
 [majordemo-async] refactor so that `retry` is composable
