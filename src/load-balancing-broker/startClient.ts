@@ -9,7 +9,9 @@ type Options = {
 
 export async function startClient(options: Options) {
   const { frontendAddress } = options
+
   const who = "client"
+
   const client = new Zmq.Dealer()
   const id = `client ${randomHexString(4)}`
   client.routingId = id

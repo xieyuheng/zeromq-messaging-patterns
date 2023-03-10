@@ -1,6 +1,3 @@
-[pirate-lazy] startServer
-[pirate-lazy] index
-
 [pirate-simple] startClient
 [pirate-simple] startServer
 [pirate-simple] index

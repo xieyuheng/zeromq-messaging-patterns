@@ -10,7 +10,9 @@ type Options = {
 
 export async function startClient(options: Options): Promise<void> {
   const { serverAddress, timeout, retries } = options
+
   const who = "client"
+
   const client = new Zmq.Dealer()
   client.connect(serverAddress)
 
@@ -23,8 +25,7 @@ export async function startClient(options: Options): Promise<void> {
     const request = [String(++sequence), payload]
     await client.send(request)
 
-    let expectingReply = true
-    while (expectingReply) {
+    while (true) {
       log({ who, message: "expecting reply" })
       try {
         client.receiveTimeout = timeout
@@ -34,21 +35,20 @@ export async function startClient(options: Options): Promise<void> {
             who,
             message: "ok",
             sequence,
-            receivedSequence: String(receivedSequence),
             result: String(result),
           })
           retriesLeft = retries
-          expectingReply = false
-        } else {
-          log({
-            who,
-            kind: "Error",
-            message: "received wrong sequence",
-            sequence,
-            receivedSequence: String(receivedSequence),
-            result: String(result),
-          })
+          break
         }
+
+        log({
+          who,
+          kind: "Error",
+          message: "received wrong sequence",
+          sequence,
+          receivedSequence: String(receivedSequence),
+          result: String(result),
+        })
       } catch (error) {
         // TODO only catch timeout error
         if (--retriesLeft === 0) {
@@ -57,14 +57,17 @@ export async function startClient(options: Options): Promise<void> {
             kind: "Error",
             message: "Server seems to be offline, abandoning",
           })
-        } else {
-          log({
-            who,
-            kind: "Warning",
-            message: "no response from server, retrying...",
-          })
-          await client.send(request)
+
+          return
         }
+
+        log({
+          who,
+          kind: "Warning",
+          message: "no response from server, retrying...",
+        })
+
+        await client.send(request)
       }
     }
   }
