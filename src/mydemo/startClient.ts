@@ -33,10 +33,33 @@ export async function startClient(options: Options): Promise<void> {
     await client.send(["Request", serviceName, ...request])
 
     while (true) {
-      log({ who, message: "expecting reply" })
+      log({ who, message: "expecting reply", serviceName })
       try {
         client.receiveTimeout = timeout
-        const [receivedSequence, serviceName, ...reply] = await client.receive()
+        const [kind, receivedServiceName, receivedSequence, ...reply] =
+          await client.receive()
+
+        if (String(receivedServiceName) !== serviceName) {
+          log({
+            who,
+            kind: "Error",
+            message: "serviceName mismatch",
+            serviceName,
+            receivedServiceName: String(receivedServiceName),
+          })
+          continue
+        }
+
+        if (String(kind) !== "Reply") {
+          log({
+            who,
+            kind: "Error",
+            message: "unknown kind",
+            kind: String(kind),
+          })
+          continue
+        }
+
         if (Number(receivedSequence) === sequence) {
           log({
             who,
@@ -76,7 +99,7 @@ export async function startClient(options: Options): Promise<void> {
           message: "no response from server, retrying...",
         })
 
-        await client.send(request)
+        await client.send(["Request", serviceName, ...request])
       }
     }
   }

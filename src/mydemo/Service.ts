@@ -4,10 +4,16 @@ export type Service = {
   workerIds: Array<Buffer>
 }
 
-export function createService(name: string): Service {
+export function createService(
+  name: string,
+  options: {
+    requests?: Array<{ clientId: Buffer; request: Array<Buffer> }>
+    workerIds?: Array<Buffer>
+  },
+): Service {
   return {
     name,
-    requests: [],
-    workerIds: [],
+    requests: options.requests || [],
+    workerIds: options.workerIds || [],
   }
 }

@@ -30,7 +30,13 @@ export async function startWorker(options: Options) {
 
   let cycles = 0
   while (true) {
-    const request = await worker.receive()
+    const [kind, clientId, ...request] = await worker.receive()
+
+    if (String(kind) !== "Request") {
+      log({ who, message: "unknown kind", kind: String(kind) })
+      continue
+    }
+
     cycles++
 
     //  Simulate various problems, after a few cycles
@@ -49,6 +55,7 @@ export async function startWorker(options: Options) {
     log({ who, id, message: "working" })
     //  Pretend to work
     await wait(workDelay)
-    await worker.send(["Reply", ...request])
+    const reply = request
+    await worker.send(["Reply", serviceName, clientId, ...reply])
   }
 }
