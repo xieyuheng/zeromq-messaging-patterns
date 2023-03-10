@@ -1,11 +1,11 @@
-# majordemo-async
+# mydemo
 
-[majordemo-async] `brokerListenBackend` -- `Reply`
-[majordemo-async] `serviceReactive`
-[majordemo-async] `Broker` remove `requests` and `workerIds`
-[majordemo-async] without `heartbeat` for now
-[majordemo-async] refactor so that `retry` is composable
-[majordemo-async] refactor so that `heartbeat` are composable
+[mydemo] `brokerListenBackend` -- `Reply`
+[mydemo] `serviceReactive`
+[mydemo] `Broker` remove `requests` and `workerIds`
+[mydemo] without `heartbeat` for now
+[mydemo] refactor so that `retry` is composable
+[mydemo] refactor so that `heartbeat` are composable
 
 # pirate-lazy
 

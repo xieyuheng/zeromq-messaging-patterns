@@ -1,6 +1,6 @@
-# Majordomo
+# Mydemo
 
-Majordomo Protocol MDP -- https://rfc.zeromq.org/spec/7
+Learning majordomo Protocol MDP -- https://rfc.zeromq.org/spec/7
 
 > Partitioning of workers by service allows for multiple applications
 > to share the same broker infrastructure.
