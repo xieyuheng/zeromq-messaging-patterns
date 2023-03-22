@@ -1,3 +1,10 @@
+why use '' in envelope?
+
+envelope is about return addresses,
+like forth return stack.
+
+how internet router works?
+
 # mydemo
 
 [mydemo] support `heartbeat`
